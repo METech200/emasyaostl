@@ -40,7 +40,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : EMasyaoSTLWidget(),
+          : NameContactNoEmailWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -55,27 +55,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : EMasyaoSTLWidget(),
+              : NameContactNoEmailWidget(),
           routes: [
-            FFRoute(
-              name: 'EMasyaoSTL',
-              path: 'eMasyaoSTL',
-              builder: (context, params) => EMasyaoSTLWidget(),
-            ),
             FFRoute(
               name: 'NameContactNoEmail',
               path: 'nameContactNoEmail',
               builder: (context, params) => NameContactNoEmailWidget(),
             ),
             FFRoute(
-              name: 'PaymentSummary',
-              path: 'paymentSummary',
-              builder: (context, params) => PaymentSummaryWidget(),
+              name: 'EMasyaoSTL',
+              path: 'eMasyaoSTL',
+              builder: (context, params) => EMasyaoSTLWidget(),
             ),
             FFRoute(
               name: 'PaymentConfirmation',
               path: 'paymentConfirmation',
               builder: (context, params) => PaymentConfirmationWidget(),
+            ),
+            FFRoute(
+              name: 'PaymentSummary',
+              path: 'paymentSummary',
+              builder: (context, params) => PaymentSummaryWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
