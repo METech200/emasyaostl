@@ -2,8 +2,8 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../payment_confirmation/payment_confirmation_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,6 +33,7 @@ class _PaymentSummaryWidgetState extends State<PaymentSummaryWidget> {
     textController3 = TextEditingController();
     textController4 =
         TextEditingController(text: dateTimeFormat('M/d h:mm a', datePicked));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -556,17 +557,56 @@ class _PaymentSummaryWidgetState extends State<PaymentSummaryWidget> {
                                                 'textController4',
                                                 Duration(milliseconds: 2000),
                                                 () async {
-                                                  await DatePicker
-                                                      .showDateTimePicker(
-                                                    context,
-                                                    showTitleActions: true,
-                                                    onConfirm: (date) {
-                                                      setState(() =>
-                                                          datePicked = date);
-                                                    },
-                                                    currentTime: datePicked!,
-                                                    minTime: datePicked!,
-                                                  );
+                                                  if (kIsWeb) {
+                                                    final _datePickedDate =
+                                                        await showDatePicker(
+                                                      context: context,
+                                                      initialDate: datePicked!,
+                                                      firstDate: datePicked!,
+                                                      lastDate: DateTime(2050),
+                                                    );
+
+                                                    TimeOfDay? _datePickedTime;
+                                                    if (_datePickedDate !=
+                                                        null) {
+                                                      _datePickedTime =
+                                                          await showTimePicker(
+                                                        context: context,
+                                                        initialTime: TimeOfDay
+                                                            .fromDateTime(
+                                                                datePicked!),
+                                                      );
+                                                    }
+
+                                                    if (_datePickedDate !=
+                                                            null &&
+                                                        _datePickedTime !=
+                                                            null) {
+                                                      setState(
+                                                        () => datePicked =
+                                                            DateTime(
+                                                          _datePickedDate.year,
+                                                          _datePickedDate.month,
+                                                          _datePickedDate.day,
+                                                          _datePickedTime!.hour,
+                                                          _datePickedTime
+                                                              .minute,
+                                                        ),
+                                                      );
+                                                    }
+                                                  } else {
+                                                    await DatePicker
+                                                        .showDateTimePicker(
+                                                      context,
+                                                      showTitleActions: true,
+                                                      onConfirm: (date) {
+                                                        setState(() =>
+                                                            datePicked = date);
+                                                      },
+                                                      currentTime: datePicked!,
+                                                      minTime: datePicked!,
+                                                    );
+                                                  }
                                                 },
                                               ),
                                               autofocus: true,
@@ -842,14 +882,15 @@ class _PaymentSummaryWidgetState extends State<PaymentSummaryWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 6, 70, 0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 50),
-                              reverseDuration: Duration(milliseconds: 50),
-                              child: PaymentConfirmationWidget(),
-                            ),
+                          context.pushNamed(
+                            'PaymentConfirmation',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 50),
+                              ),
+                            },
                           );
                         },
                         text: 'Pay Now',

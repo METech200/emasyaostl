@@ -1,4 +1,3 @@
-import '../e_masyao_s_t_l/e_masyao_s_t_l_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -18,6 +17,13 @@ class PaymentConfirmationWidget extends StatefulWidget {
 
 class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -642,14 +648,16 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 50),
-                                reverseDuration: Duration(milliseconds: 50),
-                                child: EMasyaoSTLWidget(),
-                              ),
+                            context.pushNamed(
+                              'EMasyaoSTL',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                  duration: Duration(milliseconds: 50),
+                                ),
+                              },
                             );
                           },
                           text: 'Bet Again!',

@@ -6,8 +6,8 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../name_contact_no_email/name_contact_no_email_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -66,6 +66,7 @@ class _EMasyaoSTLWidgetState extends State<EMasyaoSTLWidget>
     betAmmountController = TextEditingController();
     dateAndTimeController = TextEditingController();
     textController3 = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -471,16 +472,50 @@ class _EMasyaoSTLWidgetState extends State<EMasyaoSTLWidget>
                                           3, 5, 0, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          await DatePicker.showDateTimePicker(
-                                            context,
-                                            showTitleActions: true,
-                                            onConfirm: (date) {
+                                          if (kIsWeb) {
+                                            final _datePicked1Date =
+                                                await showDatePicker(
+                                              context: context,
+                                              initialDate: getCurrentTimestamp,
+                                              firstDate: getCurrentTimestamp,
+                                              lastDate: DateTime(2050),
+                                            );
+
+                                            TimeOfDay? _datePicked1Time;
+                                            if (_datePicked1Date != null) {
+                                              _datePicked1Time =
+                                                  await showTimePicker(
+                                                context: context,
+                                                initialTime:
+                                                    TimeOfDay.fromDateTime(
+                                                        getCurrentTimestamp),
+                                              );
+                                            }
+
+                                            if (_datePicked1Date != null &&
+                                                _datePicked1Time != null) {
                                               setState(
-                                                  () => datePicked1 = date);
-                                            },
-                                            currentTime: getCurrentTimestamp,
-                                            minTime: getCurrentTimestamp,
-                                          );
+                                                () => datePicked1 = DateTime(
+                                                  _datePicked1Date.year,
+                                                  _datePicked1Date.month,
+                                                  _datePicked1Date.day,
+                                                  _datePicked1Time!.hour,
+                                                  _datePicked1Time.minute,
+                                                ),
+                                              );
+                                            }
+                                          } else {
+                                            await DatePicker.showDateTimePicker(
+                                              context,
+                                              showTitleActions: true,
+                                              onConfirm: (date) {
+                                                setState(
+                                                    () => datePicked1 = date);
+                                              },
+                                              currentTime: getCurrentTimestamp,
+                                              minTime: getCurrentTimestamp,
+                                            );
+                                          }
                                         },
                                         text: 'Select',
                                         options: FFButtonOptions(
@@ -635,18 +670,55 @@ class _EMasyaoSTLWidgetState extends State<EMasyaoSTLWidget>
                                             onEditingComplete:
                                                 onEditingComplete,
                                             onFieldSubmitted: (_) async {
-                                              await DatePicker
-                                                  .showDateTimePicker(
-                                                context,
-                                                showTitleActions: true,
-                                                onConfirm: (date) {
+                                              if (kIsWeb) {
+                                                final _datePicked2Date =
+                                                    await showDatePicker(
+                                                  context: context,
+                                                  initialDate:
+                                                      getCurrentTimestamp,
+                                                  firstDate:
+                                                      getCurrentTimestamp,
+                                                  lastDate: DateTime(2050),
+                                                );
+
+                                                TimeOfDay? _datePicked2Time;
+                                                if (_datePicked2Date != null) {
+                                                  _datePicked2Time =
+                                                      await showTimePicker(
+                                                    context: context,
+                                                    initialTime:
+                                                        TimeOfDay.fromDateTime(
+                                                            getCurrentTimestamp),
+                                                  );
+                                                }
+
+                                                if (_datePicked2Date != null &&
+                                                    _datePicked2Time != null) {
                                                   setState(
-                                                      () => datePicked2 = date);
-                                                },
-                                                currentTime:
-                                                    getCurrentTimestamp,
-                                                minTime: getCurrentTimestamp,
-                                              );
+                                                    () =>
+                                                        datePicked2 = DateTime(
+                                                      _datePicked2Date.year,
+                                                      _datePicked2Date.month,
+                                                      _datePicked2Date.day,
+                                                      _datePicked2Time!.hour,
+                                                      _datePicked2Time.minute,
+                                                    ),
+                                                  );
+                                                }
+                                              } else {
+                                                await DatePicker
+                                                    .showDateTimePicker(
+                                                  context,
+                                                  showTitleActions: true,
+                                                  onConfirm: (date) {
+                                                    setState(() =>
+                                                        datePicked2 = date);
+                                                  },
+                                                  currentTime:
+                                                      getCurrentTimestamp,
+                                                  minTime: getCurrentTimestamp,
+                                                );
+                                              }
                                             },
                                             autofocus: true,
                                             obscureText: false,
@@ -964,17 +1036,17 @@ class _EMasyaoSTLWidgetState extends State<EMasyaoSTLWidget>
                                         6, 0, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.pushAndRemoveUntil(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            duration:
-                                                Duration(milliseconds: 50),
-                                            reverseDuration:
-                                                Duration(milliseconds: 50),
-                                            child: NameContactNoEmailWidget(),
-                                          ),
-                                          (r) => false,
+                                        context.goNamed(
+                                          'NameContactNoEmail',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 50),
+                                            ),
+                                          },
                                         );
                                       },
                                       text: 'Bet Now!',

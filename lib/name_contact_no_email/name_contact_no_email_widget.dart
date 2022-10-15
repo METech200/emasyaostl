@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../payment_summary/payment_summary_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,6 +18,13 @@ class _NameContactNoEmailWidgetState extends State<NameContactNoEmailWidget> {
   TextEditingController? textController2;
   TextEditingController? textController3;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
 
   @override
   void dispose() {
@@ -458,14 +464,15 @@ class _NameContactNoEmailWidgetState extends State<NameContactNoEmailWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(120, 80, 120, 0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 50),
-                              reverseDuration: Duration(milliseconds: 50),
-                              child: PaymentSummaryWidget(),
-                            ),
+                          context.pushNamed(
+                            'PaymentSummary',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 50),
+                              ),
+                            },
                           );
                         },
                         text: 'Proceed!',
