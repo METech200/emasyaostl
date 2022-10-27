@@ -1,0 +1,134 @@
+{
+  "project_info": {
+    "project_number": "544480271029",
+    "project_id": "e-masyao-stl",
+    "storage_bucket": "e-masyao-stl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544480271029:android:5aa99da507a282740abcfc",
+        "android_client_info": {
+          "package_name": "com.emasyao.stl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544480271029-qinbpole6msj852qj59gu31v8fpspv8k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emasyao.stl",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASz7r0MSqWkK9DhOoxDz8Xyg0PqN6CmAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544480271029-0nr09nj59mqiul8rc8kivre1ulooacrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emasyao.stl"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544480271029:android:43df1ec5c6a3a8020abcfc",
+        "android_client_info": {
+          "package_name": "com.emasyaostl.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544480271029-vvqemu70sdm7otaroit1adsfalk5i6k3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emasyaostl.app",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASz7r0MSqWkK9DhOoxDz8Xyg0PqN6CmAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544480271029-0nr09nj59mqiul8rc8kivre1ulooacrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emasyao.stl"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544480271029:android:99304396a6bc070b0abcfc",
+        "android_client_info": {
+          "package_name": "com.mycompany.tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASz7r0MSqWkK9DhOoxDz8Xyg0PqN6CmAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544480271029-2e6v3bm58o3rc0b4hjb56q3p39ie5e55.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544480271029-0nr09nj59mqiul8rc8kivre1ulooacrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emasyao.stl"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
